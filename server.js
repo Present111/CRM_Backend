@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const swaggerDocs = require("./swagger");
 const swaggerUi = require("swagger-ui-express");
+const cors = require("cors");
 
 // Load environment variables
 dotenv.config();
@@ -11,6 +12,18 @@ dotenv.config();
 connectDB();
 
 const app = express();
+
+// Sử dụng FRONTEND_URL từ .env
+const FRONTEND_URL = process.env.FRONTEND_URL;
+
+// Cấu hình CORS
+app.use(
+  cors({
+    origin: FRONTEND_URL, // Địa chỉ frontend
+    methods: ["GET", "POST", "PUT", "DELETE"], // Các phương thức được phép
+    credentials: true, // Nếu bạn sử dụng cookie hoặc header xác thực
+  })
+);
 
 // Middleware
 app.use(express.json());
