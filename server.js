@@ -21,6 +21,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 // Routes
 app.use("/api/auth", require("./routes/authRoutes")); // Authentication routes
 app.use("/api/users", require("./routes/userRoutes")); // User management routes
+app.use("/api/contacts", require("./routes/contactRoutes"));
 
 // Server
 const PORT = process.env.PORT || 5000;
